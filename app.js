@@ -8,6 +8,9 @@ import errorHandlerMW from "./middlewares/error-handler.js";
 const port = process.env.PORT;
 const app = express();
 
+// by below static middleware line, we are saying express to look for public folder for stattic files
+// for / method, it will automatically render index.html file of public folder
+app.use(express.static("./public")); 
 app.use(express.json());
 
 //setting routes
