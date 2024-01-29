@@ -1,4 +1,4 @@
-import CustomAPIError from "../errors/custom-errors.js";
+import BadRequestError from "../errors/badrequest-errors.js";
 import jwt from "jsonwebtoken";
 
 const loginController = (req, res) => {
@@ -8,7 +8,7 @@ const loginController = (req, res) => {
   //3. Normal JS validation in express controller (using this for now)
   const { username, password } = req.body;
   if (!username || !password) {
-    throw new CustomAPIError("Please provide username and password both", 400);
+    throw new BadRequestError("Please provide username and password both");
   }
 
   // id is normally provided by DB
