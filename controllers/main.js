@@ -23,29 +23,30 @@ const dashboardController = (req, res) => {
   // throw new Error("koi bhi");
   // throw new CustomAPIError("apna error", 201);
   try {
-    const authorization = req.headers.authorization;
-    if (!authorization || !authorization.startsWith("Bearer ")) {
-      console.log("hell");
-      throw new CustomAPIError(
-        "Invalid Token Format. Access Not Allowed!!",
-        401
-      );
-    }
-    const token = authorization.split(" ")[1];
+    // const authorization = req.headers.authorization;
+    // if (!authorization || !authorization.startsWith("Bearer ")) {
+    //   console.log("hell");
+    //   throw new CustomAPIError(
+    //     "Invalid Token Format. Access Not Allowed!!",
+    //     401
+    //   );
+    // }
+    // const token = authorization.split(" ")[1];
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const luckyNumber = Math.floor(Math.random() * 100);
     res.status(200).json({
-      msg: `Hello, ${decoded.username}`,
+      msg: `Hello, ${req.username}`,
       secret: `Your lucky no. is ${luckyNumber}`,
     });
   } catch (error) {
     console.log("ee", error);
-    if (error.name === "JsonWebTokenError") {
-      throw new CustomAPIError("Invalid Token. Access Denied.", 401);
-    } else {
-      throw error;
-    }
+    // if (error.name === "JsonWebTokenError") {
+    //   throw new CustomAPIError("Invalid Token. Access Denied.", 401);
+    // } else {
+    //   throw error;
+    // }
+    throw error;
   }
 };
 
